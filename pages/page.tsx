@@ -1,5 +1,6 @@
 
 import { supabase } from "@/lib/supabase";
+import { Text } from "@chakra-ui/react";
 
 type Country = {
   id: number;
@@ -12,11 +13,15 @@ type Props = {
 
 const Page = ({ countries }: Props) => {
   return (
+    <>
+    <Text>コンチには</Text>
     <ul>
+      aa
       {countries.map((country) => (
-        <li key={country.id}>{country.name}</li>
+        <li key={country.id}>{country.name}aa</li>
       ))}
     </ul>
+    </>
   );
 };
 

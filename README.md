@@ -1,5 +1,4 @@
-
-# ローカルDB
+# ローカル DB
 
 ## 必要なもの
 
@@ -7,43 +6,48 @@
 - Git
 - subabase CLI
 
-### supabase CLIのインストール
+### supabase CLI のインストール
 
 <https://supabase.com/docs/guides/cli/local-development>
 
+## ローカル DB の操作
 
-## ローカルDBの操作
-
-supabaseの起動
+supabase の起動
 
 ```sh
 supabase start
 ```
 
-ローカルのsupabase Studio
+ローカルの supabase Studio
 
 <http://localhost:54323>
 
-supabase　Studioの変更をマイグレーションファイルに反映する
+supabase 　 Studio の変更をマイグレーションファイルに反映する
 
 ```sh
 supabase db diff
 ```
 
-ローカルDBのmigrationと、seedの反映
+ローカル DB の migration と、seed の反映
 
 ```sh
 supabase db reset
 ```
 
-ローカルDBの変更を本番に反映
+ローカル DB の変更を本番に反映
 
 ```sh
 supabase db commit
 supabase db push
 ```
 
-本番の変更をmigrationに反映
+DB の typescript 用の型を生成
+
+```sh
+supabase gen types typescript --local > lib/database.types.ts
+```
+
+本番の変更を migration に反映
 
 ```sh
 supabase db remote commit

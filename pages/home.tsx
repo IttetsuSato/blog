@@ -19,10 +19,10 @@ const Home = ({ posts }: Props) => {
 };
 
 export const getStaticProps = async () => {
-  let { data } = await supabase.from("posts").select();
+  let { data: posts } = await supabase.from("posts").select();
   return {
     props: {
-      posts: data,
+      posts,
     },
   };
 };

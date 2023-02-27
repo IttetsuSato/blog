@@ -22,7 +22,7 @@ supabase start
 
 <http://localhost:54323>
 
-supabase 　 Studio の変更をマイグレーションファイルに反映する
+supabase Studio の変更をマイグレーションファイルに反映する
 
 ```sh
 supabase db diff

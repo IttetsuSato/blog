@@ -1,4 +1,3 @@
-// import { supabase } from 'src/lib/supabaseClient';
 
 import { supabase } from "@/lib/supabase";
 
@@ -21,7 +20,7 @@ const Page = ({ countries }: Props) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   let { data } = await supabase.from('countries').select();
   return {
     props: {

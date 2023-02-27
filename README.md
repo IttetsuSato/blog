@@ -1,5 +1,5 @@
 
-# ローカルDBの構築
+# ローカルDB
 
 ## 必要なもの
 
@@ -11,24 +11,40 @@
 
 <https://supabase.com/docs/guides/cli/local-development>
 
-### supabaseの起動
+
+## ローカルDBの操作
+
+supabaseの起動
 
 ```sh
-npx supabase start
+supabase start
 ```
 
-### ローカルのsupabase Studio
+ローカルのsupabase Studio
 
 <http://localhost:54323>
 
 supabase　Studioの変更をマイグレーションファイルに反映する
 
 ```sh
-npx supabase db diff
+supabase db diff
 ```
 
-ローカルデータベースへの変更の削除と、seedの反映
+ローカルDBのmigrationと、seedの反映
 
 ```sh
-npx supabase db reset
+supabase db reset
+```
+
+ローカルDBの変更を本番に反映
+
+```sh
+supabase db commit
+supabase db push
+```
+
+本番の変更をmigrationに反映
+
+```sh
+supabase db remote commit
 ```

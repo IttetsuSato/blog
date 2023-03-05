@@ -1,5 +1,7 @@
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type Post = Database["public"]["Tables"]["posts"]["Row"];
 
@@ -10,11 +12,16 @@ type Props = {
 const Home = ({ posts }: Props) => {
   console.log({ posts });
   return (
-    <ul>
-      {posts.map((post) => (
-        <li key={post.id}>{post.text}</li>
-      ))}
-    </ul>
+    <>
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+      Just a link: https://reactjs.com.
+      </ReactMarkdown>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>{post.text}</li>
+        ))}
+      </ul>
+    </>
   );
 };
 

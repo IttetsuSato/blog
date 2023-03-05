@@ -1,9 +1,16 @@
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
-import { Textarea } from "@chakra-ui/react";
-import { GetServerSideProps, GetStaticProps } from "next";
+import {
+  Button,
+  Card,
+  CardBody,
+  HStack,
+  Textarea,
+  useToast,
+} from "@chakra-ui/react";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -20,23 +27,61 @@ const Edit = ({ post }: Props) => {
     setText(e.target.value);
   };
 
+  const router = useRouter();
+  const { pid } = router.query;
+
+  const toast = useToast();
+
+  const handleSaveClick = useCallback(async () => {
+    const { error } = await supabase
+      .from("posts")
+      .update({
+        text,
+      })
+      .eq("id", pid);
+    console.log({ error });
+    if (error) {
+      toast({
+        title: "保存失敗",
+        status: "error",
+      });
+    }
+    toast({
+      title: "下書き保存成功",
+      status: "success",
+    });
+  }, [pid, text, toast]);
+
   return (
     <>
-      <Textarea
-        value={text}
-        onChange={handleInputChange}
-        placeholder="Write in Markdown"
-      />
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
+      <Button onClick={handleSaveClick}>保存</Button>
+      <HStack>
+        <Card>
+          <CardBody>
+            <Textarea
+              value={text}
+              onChange={handleInputChange}
+              placeholder="Write in Markdown"
+            />
+          </CardBody>
+        </Card>
+        <Card>
+          <CardBody>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
+          </CardBody>
+        </Card>
+      </HStack>
     </>
   );
 };
+
 type PathParams = {
   pid: string;
 };
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { pid } = context.params as PathParams;
-  let { data: post } = await supabase
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const { pid } = params as PathParams;
+  const { data: post } = await supabase
     .from("posts")
     .select()
     .eq("id", pid)

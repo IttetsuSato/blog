@@ -39,17 +39,18 @@ const Edit = ({ post }: Props) => {
         text,
       })
       .eq("id", pid);
-    console.log({ error });
+
     if (error) {
       toast({
         title: "保存失敗",
         status: "error",
       });
+    } else {
+      toast({
+        title: "下書き保存成功",
+        status: "success",
+      });
     }
-    toast({
-      title: "下書き保存成功",
-      status: "success",
-    });
   }, [pid, text, toast]);
 
   return (

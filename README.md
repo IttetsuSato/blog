@@ -1,16 +1,18 @@
-# ローカル DB
+# blog
 
-## 必要なもの
+## ローカル DB
+
+### 必要なもの
 
 - Docker
 - Git
 - subabase CLI
 
-### supabase CLI のインストール
+#### supabase CLI のインストール
 
 <https://supabase.com/docs/guides/cli/local-development>
 
-## ローカル DB の操作
+### ローカル DB の操作
 
 supabase の起動
 
@@ -51,4 +53,14 @@ supabase gen types typescript --local > lib/database.types.ts
 
 ```sh
 supabase db remote commit
+```
+
+## コンポーネントの作成
+
+### 作成方法
+
+hygen を brew などでインストールしておく
+
+```sh
+hygen generator components
 ```

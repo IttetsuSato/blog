@@ -12,21 +12,9 @@ type Props = {
 };
 
 const Home = ({ posts }: Props) => {
-  const [text, setText] = useState<string>("");
-
-  const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
-  };
-
   console.log({ posts });
   return (
     <>
-      <Textarea
-        value={text}
-        onChange={handleInputChange}
-        placeholder="Write in Markdown"
-      />
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>{post.text}</li>

@@ -1,6 +1,8 @@
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
 import { Textarea } from "@chakra-ui/react";
+import { GetServerSideProps, GetStaticProps } from "next";
+import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -29,9 +31,17 @@ const Edit = ({ post }: Props) => {
     </>
   );
 };
+type PathParams = {
+  pid: string;
+};
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { pid } = context.params as PathParams;
+  let { data: post } = await supabase
+    .from("posts")
+    .select()
+    .eq("id", pid)
+    .single();
 
-export const getStaticProps = async () => {
-  let { data: post } = await supabase.from("posts").select().eq("id", 1).single();
   return {
     props: {
       post,

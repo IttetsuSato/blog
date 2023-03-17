@@ -1,3 +1,4 @@
+import { PreviewCard } from "@/components/components/Card/PreviewCard";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
 import {
@@ -11,8 +12,6 @@ import {
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { ChangeEvent, useCallback, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 type Post = Database["public"]["Tables"]["posts"]["Row"];
 
@@ -66,11 +65,7 @@ const Edit = ({ post }: Props) => {
             />
           </CardBody>
         </Card>
-        <Card>
-          <CardBody>
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
-          </CardBody>
-        </Card>
+        <PreviewCard text={text} />
       </HStack>
     </>
   );

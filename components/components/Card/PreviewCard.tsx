@@ -10,7 +10,9 @@ export const PreviewCard: React.FC<PreviewCardProps> = ({ text }) => {
   return (
     <Card w="2xl" minH="2xl">
       <CardBody>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
+        <ReactMarkdown className="markdown-body" remarkPlugins={[remarkGfm]}>
+          {text}
+        </ReactMarkdown>
       </CardBody>
     </Card>
   );

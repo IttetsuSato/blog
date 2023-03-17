@@ -52,17 +52,17 @@ export interface Database {
         Row: {
           created_at: string | null
           id: number
-          text: string | null
+          text: string
         }
         Insert: {
           created_at?: string | null
           id?: number
-          text?: string | null
+          text?: string
         }
         Update: {
           created_at?: string | null
           id?: number
-          text?: string | null
+          text?: string
         }
       }
     }

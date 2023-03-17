@@ -10,11 +10,13 @@ type Props = {
 const Home = ({ posts }: Props) => {
   console.log({ posts });
   return (
-    <ul>
-      {posts.map((post) => (
-        <li key={post.id}>{post.text}</li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>{post.text}</li>
+        ))}
+      </ul>
+    </>
   );
 };
 

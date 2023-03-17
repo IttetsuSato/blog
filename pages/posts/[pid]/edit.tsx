@@ -1,4 +1,4 @@
-import { PreviewCard } from "@/components/components/Card/PreviewCard";
+import { PreviewCard } from "@/components/Card/PreviewCard";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
 import {

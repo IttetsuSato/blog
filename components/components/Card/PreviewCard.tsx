@@ -8,7 +8,7 @@ type PreviewCardProps = {
 
 export const PreviewCard: React.FC<PreviewCardProps> = ({ text }) => {
   return (
-    <Card>
+    <Card w="2xl" minH="2xl">
       <CardBody>
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
       </CardBody>

@@ -1,9 +1,5 @@
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
-import { Textarea } from "@chakra-ui/react";
-import { ChangeEvent, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 type Post = Database["public"]["Tables"]["posts"]["Row"];
 

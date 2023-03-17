@@ -56,7 +56,7 @@ const Edit = ({ post }: Props) => {
     <>
       <Button onClick={handleSaveClick}>保存</Button>
       <HStack>
-        <Card>
+        <Card w="2xl" minH="2xl">
           <CardBody>
             <Textarea
               value={text}

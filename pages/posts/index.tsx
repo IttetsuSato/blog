@@ -1,7 +1,7 @@
 import { CenteredLayout } from "@/components/Layouts/CenteredLayout";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
-import { Card, CardBody } from "@chakra-ui/react";
+import { Box, Card, CardBody, CardHeader, Heading } from "@chakra-ui/react";
 
 type Post = Database["public"]["Tables"]["posts"]["Row"];
 
@@ -10,15 +10,19 @@ type Props = {
 };
 
 const Posts = ({ posts }: Props) => {
+  console.log({posts});
   return (
     <CenteredLayout>
       <Card>
+        <CardHeader>
+          <Heading as="h1">記事</Heading>
+        </CardHeader>
         <CardBody>
-          <ul>
-            {posts.map((post) => (
-              <li key={post.id}>{post.text}</li>
-            ))}
-          </ul>
+          {posts.map((post) => (
+            <Box key={post.id}>
+              <Heading>{post.title}</Heading>
+            </Box>
+          ))}
         </CardBody>
       </Card>
     </CenteredLayout>

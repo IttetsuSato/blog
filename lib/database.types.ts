@@ -34,35 +34,27 @@ export interface Database {
   }
   public: {
     Tables: {
-      countries: {
-        Row: {
-          id: number
-          name: string
-        }
-        Insert: {
-          id?: number
-          name: string
-        }
-        Update: {
-          id?: number
-          name?: string
-        }
-      }
       posts: {
         Row: {
           created_at: string | null
           id: number
           text: string
+          title: string
+          updated_at: string | null
         }
         Insert: {
           created_at?: string | null
           id?: number
           text?: string
+          title?: string
+          updated_at?: string | null
         }
         Update: {
           created_at?: string | null
           id?: number
           text?: string
+          title?: string
+          updated_at?: string | null
         }
       }
     }

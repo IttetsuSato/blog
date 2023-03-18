@@ -27,7 +27,7 @@ supabase start
 supabase Studio の変更をマイグレーションファイルに反映する
 
 ```sh
-supabase db diff
+supabase db diff --use-migra -f [output-file-suffix]
 ```
 
 ローカル DB の migration と、seed の反映

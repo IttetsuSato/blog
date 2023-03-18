@@ -1,4 +1,4 @@
-import { HStack } from "@chakra-ui/react";
+import { Box, Flex, HStack } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 export type CenteredLayoutProps = {
@@ -7,8 +7,8 @@ export type CenteredLayoutProps = {
 
 export const CenteredLayout: React.FC<CenteredLayoutProps> = ({ children }) => {
   return (
-    <HStack justifyContent="center" w="full">
+    <Flex justifyContent="center" w="full">
       {children}
-    </HStack>
+    </Flex>
   );
 };

@@ -5,7 +5,9 @@ import {
   Button,
   Card,
   CardBody,
+  CardHeader,
   HStack,
+  Input,
   Textarea,
   useToast,
 } from "@chakra-ui/react";
@@ -20,6 +22,7 @@ type Props = {
 };
 
 const Edit = ({ post }: Props) => {
+  const [title, setTitle] = useState(post.title);
   const [text, setText] = useState(post.text);
 
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -57,6 +60,9 @@ const Edit = ({ post }: Props) => {
       <Button onClick={handleSaveClick}>保存</Button>
       <HStack>
         <Card w="2xl" minH="2xl">
+          <CardHeader>
+            <Input>{title}</Input>
+          </CardHeader>
           <CardBody>
             <Textarea
               value={text}

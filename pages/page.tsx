@@ -14,7 +14,7 @@ type Props = {
 const Page = ({ countries }: Props) => {
   return (
     <>
-    <Text>コンチには</Text>
+    <Text>カントリーの一覧です</Text>
     <ul>
       aa
       {countries.map((country) => (

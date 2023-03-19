@@ -2,7 +2,17 @@ import { CardBox } from "@/components/Box/CardBox";
 import { CenteredLayout } from "@/components/Layouts/CenteredLayout";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
-import { Box, Heading } from "@chakra-ui/react";
+import {
+  Link,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
+import NextLink from "next/link";
 
 type Post = Database["public"]["Tables"]["posts"]["Row"];
 
@@ -15,12 +25,26 @@ const Posts = ({ posts }: Props) => {
   return (
     <CenteredLayout>
       <CardBox>
-      <Heading as="h1">記事</Heading>
-        {posts.map((post) => (
-          <Box key={post.id}>
-            <Heading>{post.title}</Heading>
-          </Box>
-        ))}
+        <TableContainer>
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>記事</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {posts.map((post) => (
+                <Tr key={post.id}>
+                  <Td>
+                    <Link as={NextLink} href={`/posts/${post.id}/edit`}>
+                      {post.title}
+                    </Link>
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
       </CardBox>
     </CenteredLayout>
   );

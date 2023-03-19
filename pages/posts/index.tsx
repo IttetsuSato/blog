@@ -15,7 +15,7 @@ const Posts = ({ posts }: Props) => {
   return (
     <CenteredLayout>
       <CardBox>
-        <Heading as="h1">記事</Heading>
+      <Heading as="h1">記事</Heading>
         {posts.map((post) => (
           <Box key={post.id}>
             <Heading>{post.title}</Heading>

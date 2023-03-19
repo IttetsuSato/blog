@@ -1,4 +1,5 @@
-import { PreviewCard } from "@/components/Card/PreviewCard";
+import { BlogBox } from "@/components/Box/BlogBox";
+import { CardBox } from "@/components/Box/CardBox";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
 import {
@@ -59,19 +60,17 @@ const Edit = ({ post }: Props) => {
     <>
       <Button onClick={handleSaveClick}>保存</Button>
       <HStack>
-        <Card w="2xl" minH="2xl">
-          <CardHeader>
-            <Input>{title}</Input>
-          </CardHeader>
-          <CardBody>
-            <Textarea
-              value={text}
-              onChange={handleInputChange}
-              placeholder="Write in Markdown"
-            />
-          </CardBody>
-        </Card>
-        <PreviewCard text={text} />
+        <CardBox>
+          <Input value={title} />
+
+          <Textarea
+            value={text}
+            onChange={handleInputChange}
+            placeholder="Write in Markdown"
+          />
+        </CardBox>
+
+        <BlogBox text={text} />
       </HStack>
     </>
   );

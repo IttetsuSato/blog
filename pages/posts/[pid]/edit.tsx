@@ -1,11 +1,11 @@
-import { PreviewCard } from "@/components/components/Card/PreviewCard";
+import { BlogBox } from "@/components/Box/BlogBox";
+import { CardBox } from "@/components/Box/CardBox";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
 import {
   Button,
-  Card,
-  CardBody,
   HStack,
+  Input,
   Textarea,
   useToast,
 } from "@chakra-ui/react";
@@ -20,6 +20,7 @@ type Props = {
 };
 
 const Edit = ({ post }: Props) => {
+  const [title, setTitle] = useState(post.title);
   const [text, setText] = useState(post.text);
 
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -56,16 +57,17 @@ const Edit = ({ post }: Props) => {
     <>
       <Button onClick={handleSaveClick}>保存</Button>
       <HStack>
-        <Card w="2xl" minH="2xl">
-          <CardBody>
-            <Textarea
-              value={text}
-              onChange={handleInputChange}
-              placeholder="Write in Markdown"
-            />
-          </CardBody>
-        </Card>
-        <PreviewCard text={text} />
+        <CardBox>
+          <Input value={title} />
+
+          <Textarea
+            value={text}
+            onChange={handleInputChange}
+            placeholder="Write in Markdown"
+          />
+        </CardBox>
+
+        <BlogBox text={text} />
       </HStack>
     </>
   );

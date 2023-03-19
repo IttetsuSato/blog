@@ -4,9 +4,6 @@ import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
 import {
   Button,
-  Card,
-  CardBody,
-  CardHeader,
   HStack,
   Input,
   Textarea,

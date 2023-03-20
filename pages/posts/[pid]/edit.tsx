@@ -3,13 +3,12 @@ import { CardBox } from "@/components/Box/CardBox";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
 import {
-  Box,
   Button,
-  Heading,
   HStack,
   Input,
   Textarea,
   useToast,
+  VStack,
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
@@ -63,30 +62,37 @@ const Edit = ({ post }: Props) => {
 
   return (
     <CenteredLayout>
-      <Box>
-        <Button onClick={handleSaveClick}>下書き保存</Button>
+      <VStack>
+        <HStack w="full" justifyContent="space-between">
+          <Input
+            size="lg"
+            variant="flushed"
+            value={title}
+            onChange={handleInputChange}
+            placeholder="タイトル"
+            fontSize="3xl"
+            fontWeight="semibold"
+          />
+          <Button onClick={handleSaveClick}>下書き保存</Button>
+        </HStack>
+
         <HStack>
-          <Box>
-            <Input
-              value={title}
-              onChange={handleInputChange}
-              placeholder="タイトル"
-            />
+          <VStack>
             <CardBox>
               <Textarea
+                variant="unstyled"
                 value={text}
                 onChange={handleTextChange}
                 placeholder="マークダウンで記述してください"
               />
             </CardBox>
-          </Box>
+          </VStack>
 
-          <Box>
-            <Heading as="h1">{title}</Heading>
+          <VStack>
             <MarkdownBox text={text} />
-          </Box>
+          </VStack>
         </HStack>
-      </Box>
+      </VStack>
     </CenteredLayout>
   );
 };

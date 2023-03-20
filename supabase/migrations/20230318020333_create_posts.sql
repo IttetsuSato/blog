@@ -3,9 +3,12 @@ create table "public"."posts" (
     "title" text not null default ''::text,
     "text" text not null default ''::text,
     "created_at" timestamp with time zone default now(),
-    "updated_at" timestamp with time zone
+    "updated_at" timestamp with time zone default now()
 );
 
+create extension if not exists moddatetime schema extensions;
+create trigger handle_updated_at before update on posts 
+for each row execute function extensions.moddatetime (updated_at);
 
 alter table "public"."posts" enable row level security;
 

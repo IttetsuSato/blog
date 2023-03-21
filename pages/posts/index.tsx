@@ -1,4 +1,5 @@
 import { CardBox } from "@/components/Box/CardBox";
+import { NormalHeader } from "@/components/Header/NormalHeader";
 import { CenteredLayout } from "@/components/Layouts/CenteredLayout";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
@@ -13,6 +14,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { ReactElement } from "react";
 
 type Post = Database["public"]["Tables"]["posts"]["Row"];
 
@@ -23,30 +25,37 @@ type Props = {
 const Posts = ({ posts }: Props) => {
   console.log({ posts });
   return (
-    <CenteredLayout>
-      <CardBox>
-        <TableContainer>
-          <Table variant="simple">
-            <Thead>
-              <Tr>
-                <Th>記事</Th>
+    <CardBox>
+      <TableContainer>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>記事</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {posts.map((post) => (
+              <Tr key={post.id}>
+                <Td>
+                  <Link as={NextLink} href={`/posts/${post.id}/edit`}>
+                    {post.title}
+                  </Link>
+                </Td>
               </Tr>
-            </Thead>
-            <Tbody>
-              {posts.map((post) => (
-                <Tr key={post.id}>
-                  <Td>
-                    <Link as={NextLink} href={`/posts/${post.id}/edit`}>
-                      {post.title}
-                    </Link>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
-      </CardBox>
-    </CenteredLayout>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </CardBox>
+  );
+};
+
+Posts.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <>
+      <NormalHeader />
+      <CenteredLayout>{page}</CenteredLayout>
+    </>
   );
 };
 

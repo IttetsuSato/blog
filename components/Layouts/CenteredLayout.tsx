@@ -7,7 +7,7 @@ export type CenteredLayoutProps = {
 
 export const CenteredLayout: React.FC<CenteredLayoutProps> = ({ children }) => {
   return (
-    <Flex justifyContent="center" w="full">
+    <Flex justifyContent="center" w="full" pt="12">
       {children}
     </Flex>
   );

@@ -1,4 +1,5 @@
 import { CardBox } from "@/components/Box/CardBox";
+import { AdminHeader } from "@/components/Header/AdminHeader";
 import { CenteredLayout } from "@/components/Layouts/CenteredLayout";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
@@ -23,30 +24,33 @@ type Props = {
 const Posts = ({ posts }: Props) => {
   console.log({ posts });
   return (
-    <CenteredLayout>
-      <CardBox>
-        <TableContainer>
-          <Table variant="simple">
-            <Thead>
-              <Tr>
-                <Th>記事</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {posts.map((post) => (
-                <Tr key={post.id}>
-                  <Td>
-                    <Link as={NextLink} href={`/posts/${post.id}/edit`}>
-                      {post.title}
-                    </Link>
-                  </Td>
+    <>
+      <AdminHeader />
+      <CenteredLayout>
+        <CardBox>
+          <TableContainer>
+            <Table variant="simple">
+              <Thead>
+                <Tr>
+                  <Th>記事</Th>
                 </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
-      </CardBox>
-    </CenteredLayout>
+              </Thead>
+              <Tbody>
+                {posts.map((post) => (
+                  <Tr key={post.id}>
+                    <Td>
+                      <Link as={NextLink} href={`/posts/${post.id}/edit`}>
+                        {post.title}
+                      </Link>
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </CardBox>
+      </CenteredLayout>
+    </>
   );
 };
 

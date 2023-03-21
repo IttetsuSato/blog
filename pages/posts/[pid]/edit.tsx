@@ -12,8 +12,9 @@ import {
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, ReactElement, useCallback, useState } from "react";
 import { CenteredLayout } from "@/components/Layouts/CenteredLayout";
+import { NormalHeader } from "@/components/Header/NormalHeader";
 
 type Post = Database["public"]["Tables"]["posts"]["Row"];
 
@@ -61,39 +62,46 @@ const Edit = ({ post }: Props) => {
   }, [pid, text, title, toast]);
 
   return (
-    <CenteredLayout>
-      <VStack>
-        <HStack w="full" justifyContent="space-between">
-          <Input
-            size="lg"
-            variant="flushed"
-            value={title}
-            onChange={handleInputChange}
-            placeholder="タイトル"
-            fontSize="3xl"
-            fontWeight="semibold"
-          />
-          <Button onClick={handleSaveClick}>下書き保存</Button>
-        </HStack>
+    <VStack>
+      <HStack w="full" justifyContent="space-between">
+        <Input
+          size="lg"
+          variant="flushed"
+          value={title}
+          onChange={handleInputChange}
+          placeholder="タイトル"
+          fontSize="3xl"
+          fontWeight="semibold"
+        />
+        <Button onClick={handleSaveClick}>下書き保存</Button>
+      </HStack>
 
-        <HStack>
-          <VStack>
-            <CardBox>
-              <Textarea
-                variant="unstyled"
-                value={text}
-                onChange={handleTextChange}
-                placeholder="マークダウンで記述してください"
-              />
-            </CardBox>
-          </VStack>
+      <HStack>
+        <VStack>
+          <CardBox>
+            <Textarea
+              variant="unstyled"
+              value={text}
+              onChange={handleTextChange}
+              placeholder="マークダウンで記述してください"
+            />
+          </CardBox>
+        </VStack>
 
-          <VStack>
-            <MarkdownBox text={text} />
-          </VStack>
-        </HStack>
-      </VStack>
-    </CenteredLayout>
+        <VStack>
+          <MarkdownBox text={text} />
+        </VStack>
+      </HStack>
+    </VStack>
+  );
+};
+
+Edit.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <>
+      <NormalHeader />
+      <CenteredLayout>{page}</CenteredLayout>
+    </>
   );
 };
 

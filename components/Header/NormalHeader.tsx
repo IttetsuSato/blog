@@ -1,12 +1,14 @@
 import { HeaderBox } from "../Box/HeaderBox";
-import { Icon, IconButton, Spacer } from "@chakra-ui/react";
+import { IconButton, Spacer, useDisclosure } from "@chakra-ui/react";
 import { BsGearWideConnected } from "react-icons/bs";
+import { AdminDrawer } from "../Drawer/AdminDrawer";
 
 export type NormalHeaderProps = {
   //
 };
 
 export const NormalHeader: React.FC<NormalHeaderProps> = ({}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <HeaderBox>
       <Spacer />
@@ -15,7 +17,9 @@ export const NormalHeader: React.FC<NormalHeaderProps> = ({}) => {
         as={BsGearWideConnected}
         isRound
         size="sm"
+        onClick={onOpen}
       />
+      <AdminDrawer isOpen={isOpen} onClose={onClose} />
     </HeaderBox>
   );
 };

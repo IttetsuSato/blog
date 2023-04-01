@@ -26,6 +26,39 @@ const Edit = ({ post }: Props) => {
   const [title, setTitle] = useState(post.title);
   const [text, setText] = useState(post.text);
 
+  const router = useRouter();
+  const { pid } = router.query;
+
+  const toast = useToast();
+
+  const handleImageChange = async (
+    e: ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
+    if (!e.target.files || e.target.files.length === 0) {
+      return;
+    }
+    const file = e.target.files[0];
+    const filePath = `${file.name}`; // 画像の保存先
+    const { data, error } = await supabase.storage
+      .from("images")
+      .download("raimu.jpeg")
+      console.log({data});
+      // .upload(filePath, file);
+
+    if (error) {
+      toast({
+        title: "保存失敗",
+        description: error.message,
+        status: "error",
+      });
+    } else {
+      toast({
+        title: "サムネイル保存成功",
+        status: "success",
+      });
+    }
+  };
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
@@ -33,11 +66,6 @@ const Edit = ({ post }: Props) => {
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
-
-  const router = useRouter();
-  const { pid } = router.query;
-
-  const toast = useToast();
 
   const handleSaveClick = useCallback(async () => {
     const { error } = await supabase
@@ -63,6 +91,9 @@ const Edit = ({ post }: Props) => {
 
   return (
     <VStack>
+      {/* サムネイル画像アップロード */}
+      <Input type="file" onChange={handleImageChange} />
+
       <HStack w="full" justifyContent="space-between">
         <Input
           size="lg"

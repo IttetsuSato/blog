@@ -12,19 +12,20 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
-type AppPropsWithLayout = AppProps& {
+type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   // Create a new supabase browser client on every first render.
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
+
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <SessionContextProvider
       supabaseClient={supabaseClient}
-      initialSession={pageProps.initialSession}
+      // initialSession={pageProps.initialSession}
     >
       <ChakraProvider theme={theme}>
         {getLayout(<Component {...pageProps} />)}

@@ -25,36 +25,32 @@ type Props = {
 const Posts = ({ posts }: Props) => {
   console.log({ posts });
   return (
-    <CardBox>
-      <TableContainer>
-        <Table variant="simple">
-          <Thead>
-            <Tr>
-              <Th>記事</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {posts.map((post) => (
-              <Tr key={post.id}>
-                <Td>
-                  <Link as={NextLink} href={`/posts/${post.id}/edit`}>
-                    {post.title}
-                  </Link>
-                </Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
-    </CardBox>
-  );
-};
-
-Posts.getLayout = function getLayout(page: ReactElement) {
-  return (
     <>
       <NormalHeader />
-      <CenteredLayout>{page}</CenteredLayout>
+      <CenteredLayout>
+        <CardBox>
+          <TableContainer>
+            <Table variant="simple">
+              <Thead>
+                <Tr>
+                  <Th>記事</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {posts.map((post) => (
+                  <Tr key={post.id}>
+                    <Td>
+                      <Link as={NextLink} href={`/posts/${post.id}/edit`}>
+                        {post.title}
+                      </Link>
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </CardBox>
+      </CenteredLayout>
     </>
   );
 };

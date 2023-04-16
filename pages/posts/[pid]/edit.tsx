@@ -62,45 +62,41 @@ const Edit = ({ post }: Props) => {
   }, [pid, text, title, toast]);
 
   return (
-    <VStack>
-      <HStack w="full" justifyContent="space-between">
-        <Input
-          size="lg"
-          variant="flushed"
-          value={title}
-          onChange={handleInputChange}
-          placeholder="タイトル"
-          fontSize="3xl"
-          fontWeight="semibold"
-        />
-        <Button onClick={handleSaveClick}>下書き保存</Button>
-      </HStack>
-
-      <HStack>
-        <VStack>
-          <CardBox>
-            <Textarea
-              variant="unstyled"
-              value={text}
-              onChange={handleTextChange}
-              placeholder="マークダウンで記述してください"
-            />
-          </CardBox>
-        </VStack>
-
-        <VStack>
-          <MarkdownBox text={text} />
-        </VStack>
-      </HStack>
-    </VStack>
-  );
-};
-
-Edit.getLayout = function getLayout(page: ReactElement) {
-  return (
     <>
       <NormalHeader />
-      <CenteredLayout>{page}</CenteredLayout>
+      <CenteredLayout>
+        <VStack>
+          <HStack w="full" justifyContent="space-between">
+            <Input
+              size="lg"
+              variant="flushed"
+              value={title}
+              onChange={handleInputChange}
+              placeholder="タイトル"
+              fontSize="3xl"
+              fontWeight="semibold"
+            />
+            <Button onClick={handleSaveClick}>下書き保存</Button>
+          </HStack>
+
+          <HStack>
+            <VStack>
+              <CardBox>
+                <Textarea
+                  variant="unstyled"
+                  value={text}
+                  onChange={handleTextChange}
+                  placeholder="マークダウンで記述してください"
+                />
+              </CardBox>
+            </VStack>
+
+            <VStack>
+              <MarkdownBox text={text} />
+            </VStack>
+          </HStack>
+        </VStack>
+      </CenteredLayout>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import Account from "@/components/Account";
+import { Authorization } from "@/components/Auth/Authorization";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
@@ -13,14 +14,10 @@ type Props = {
 
 const Home = ({ posts }: Props) => {
   const session = useSession();
-  const supabase = useSupabaseClient();
+
   return (
     <>
-    {!session ? (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme="dark" />
-      ) : (
-        <Account session={session} />
-      )}
+      <Authorization>{session && <Account session={session} />}</Authorization>
 
       <ul>
         {posts.map((post) => (

@@ -1,5 +1,10 @@
+import Account from "@/components/Account";
+import { Authorization } from "@/components/Auth/Authorization";
 import { Database } from "@/lib/database.types";
 import { supabase } from "@/lib/supabase";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 type Post = Database["public"]["Tables"]["posts"]["Row"];
 
@@ -8,13 +13,17 @@ type Props = {
 };
 
 const Home = ({ posts }: Props) => {
+  const session = useSession();
+
   return (
     <>
-      <ul>
+      <Authorization>{session && <Account session={session} />}</Authorization>
+
+      {/* <ul>
         {posts.map((post) => (
           <li key={post.id}>{post.text}</li>
         ))}
-      </ul>
+      </ul> */}
     </>
   );
 };

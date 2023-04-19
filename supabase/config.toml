@@ -70,3 +70,7 @@ redirect_uri = ""
 # Overrides the default auth provider URL. Used to support self-hosted gitlab, single-tenant Azure,
 # or any other third-party OIDC providers.
 url = ""
+[auth.external.github]
+enabled = true
+client_id = "be4b0ae24b7c0f8e40ce"
+secret = "fcaaf89bf728fb08aab43b6047e3a2bd88491e6d"

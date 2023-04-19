@@ -19,6 +19,6 @@ export const Authorization: React.FC<AuthorizationProps> = ({ children }) => {
       providers={["github"]}
     />
   ) : (
-    { children }
+    <>{children}</>
   );
 };

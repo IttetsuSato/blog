@@ -19,11 +19,11 @@ const Home = ({ posts }: Props) => {
     <>
       <Authorization>{session && <Account session={session} />}</Authorization>
 
-      <ul>
+      {/* <ul>
         {posts.map((post) => (
           <li key={post.id}>{post.text}</li>
         ))}
-      </ul>
+      </ul> */}
     </>
   );
 };
